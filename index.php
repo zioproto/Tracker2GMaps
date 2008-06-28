@@ -1,3 +1,6 @@
+<?php
+require("dbinfo.php");
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
@@ -21,7 +24,7 @@
 
 
 
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAoUgKPk_fHY98eQMOpa564hRMrNOVSW71a4LeZVP0bwJUASptARSipR_BivpiNo82ukJ7codHgA08sA" 
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=<?php echo $google_key; ?>" 
       type="text/javascript"></script>
     <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0" type="text/javascript"></script>
 
