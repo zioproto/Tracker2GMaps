@@ -98,8 +98,6 @@
         // Display the map, with some controls and set the initial location 
 
         var map = new GMap2(document.getElementById("map"));
-	//var lsc = new google.maps.LocalSearch(); 
-	//map.addControl(new google.maps.LocalSearch());
 	map.addControl(new google.maps.LocalSearch(), new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10,20)));
         map.addControl(new GLargeMapControl());
         map.addControl(new GMapTypeControl());
