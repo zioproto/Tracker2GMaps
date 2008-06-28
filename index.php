@@ -63,7 +63,7 @@
         return marker;
       }
 
-      // new strategy - read the XML first, THEN create the map
+     
 
 	
       // read the markers from the XML
