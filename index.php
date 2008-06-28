@@ -21,7 +21,7 @@
 
 
 
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAACggU4V4EJTy6fbFxrBctrhTfnFi14kPUhkd9fcPKQiookKo3RxRCdCRZiXc0ky2UESBLV8nklJY6aA" 
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAoUgKPk_fHY98eQMOpa564hRMrNOVSW71a4LeZVP0bwJUASptARSipR_BivpiNo82ukJ7codHgA08sA" 
       type="text/javascript"></script>
     <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0" type="text/javascript"></script>
 
@@ -69,11 +69,12 @@
       // read the markers from the XML
       
      GDownloadUrl("map_xml.php", function (doc) {
-        var gmarkers = [];      
+        var gmarkers = [];  
+ 	var ropes = [];    
         var xmlDoc = GXml.parse(doc);
         var markers = xmlDoc.documentElement.getElementsByTagName("marker");
-
-          
+	var old_la='41.8041';
+        var old_lo='12.7002';  
         for (var i = 0; i < markers.length; i++) {
           // obtain the attribues of each marker
 	        var lat = parseFloat(markers[i].getAttribute("lat"));
@@ -84,6 +85,14 @@
           	var marker = createMarker(point,html,iconred);
              	gmarkers.push(marker);
 
+
+		var polyline = new GPolyline([
+  		  new GLatLng(old_la,old_lo),
+  		  new GLatLng(lat,lng)
+		], "#ff0000", 10);
+		ropes.push(polyline);
+		 old_la = parseFloat(markers[i].getAttribute("lat"));
+		 old_lo = parseFloat(markers[i].getAttribute("lon"));
         }
 
         // Display the map, with some controls and set the initial location 
@@ -100,6 +109,18 @@
 
         mm.addMarkers(gmarkers,8,17);
         mm.refresh();
+
+	var polyline = new GPolyline([
+  		  new GLatLng(41.8061861111,12.7022027778),
+  		  new GLatLng(41.9061861111,12.8022027778)
+		], "#ff0000", 10);
+
+	for (var i = 0; i < ropes.length; i++) {
+
+		map.addOverlay(ropes[i]);
+	}
+		
+
         om.Clear(); // Clear the loading message
       });
     }
@@ -116,6 +137,4 @@
   </body>
 
 </html>
-
-
 
